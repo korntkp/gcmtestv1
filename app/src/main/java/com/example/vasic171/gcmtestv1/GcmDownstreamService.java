@@ -11,9 +11,11 @@ public class GcmDownstreamService extends GcmListenerService {
     @Override
     public void onMessageReceived(String s, Bundle bundle) {
         Log.e(TAG, "Message Incoming");
-//        Bundle notificationData = bundle.getBundle("notification");
-//        Log.e(TAG, "Title : " + notificationData.getString("title"));
-//        Log.e(TAG, "Body : " + notificationData.getString("body"));
-//        Log.e(TAG, "icon : " + notificationData.getString("ic_launcher"));
+        Bundle notificationData = bundle.getBundle("notification");
+        if (notificationData != null) {
+            Log.e(TAG, "Title : " + notificationData.getString("title"));
+            Log.e(TAG, "Body : " + notificationData.getString("body"));
+            Log.e(TAG, "icon : " + notificationData.getString("ic_launcher"));
+        }
     }
 }

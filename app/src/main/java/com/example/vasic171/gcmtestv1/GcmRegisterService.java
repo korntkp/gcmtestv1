@@ -10,7 +10,6 @@ import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 
-import java.io.IOError;
 import java.io.IOException;
 
 public class GcmRegisterService extends IntentService {
