@@ -1,4 +1,4 @@
-package com.example.vasic171.gcmtestv1;
+package com.example.vasic171.gcmtestv1.services;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.example.vasic171.gcmtestv1.R;
 import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;

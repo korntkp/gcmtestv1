@@ -1,4 +1,4 @@
-package com.example.vasic171.gcmtestv1;
+package com.example.vasic171.gcmtestv1.services;
 
 import android.content.Intent;
 

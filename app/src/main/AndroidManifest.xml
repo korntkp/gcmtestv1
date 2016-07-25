@@ -11,12 +11,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".views.MyNotification">
         </activity>
 
         <receiver
@@ -32,7 +34,7 @@
         </receiver>
 
         <service
-            android:name=".GcmDownstreamService"
+            android:name=".services.GcmDownstreamService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -40,7 +42,7 @@
         </service>
 
         <service
-            android:name=".GcmTokenRefreshService"
+            android:name=".services.GcmTokenRefreshService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
@@ -48,7 +50,7 @@
         </service>
 
         <service
-            android:name=".GcmRegisterService"
+            android:name=".services.GcmRegisterService"
             android:exported="false" />
 
     </application>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GCM Test V1</string>
+    <string name="btn_show_local_notification">Show Local Notification</string>
 </resources>

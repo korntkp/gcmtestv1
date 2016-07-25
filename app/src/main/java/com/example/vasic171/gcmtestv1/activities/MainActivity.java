@@ -1,17 +1,22 @@
-package com.example.vasic171.gcmtestv1;
+package com.example.vasic171.gcmtestv1.activities;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.vasic171.gcmtestv1.R;
+import com.example.vasic171.gcmtestv1.services.GcmRegisterService;
+import com.example.vasic171.gcmtestv1.views.MyNotification;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
@@ -29,13 +34,13 @@ import com.google.android.gms.common.GoogleApiAvailability;
  * 1) Data
  *
  * {
-     "to" : "TARGET_DEVICE_TOKEN",
-     "data" : {
-         "name" : "Akexorcist",
-         "id" : "0001",
-         "score" : 635709,
-         "photo" : "/user_photo/0001"
-     }
+ "to" : "TARGET_DEVICE_TOKEN",
+ "data" : {
+ "name" : "Akexorcist",
+ "id" : "0001",
+ "score" : 635709,
+ "photo" : "/user_photo/0001"
+ }
  }
  *
  * OR
@@ -43,24 +48,24 @@ import com.google.android.gms.common.GoogleApiAvailability;
  * 2) Notification (for Push Notification)
  *
  * {
-     "to" : "TARGET_DEVICE_TOKEN",
-     "notification" : {
-         "body" : "Hello Android User",
-         "title" : "Akexorcist",
-         "icon" : "ic_launcher"
-     }
+ "to" : "TARGET_DEVICE_TOKEN",
+ "notification" : {
+ "body" : "Hello Android User",
+ "title" : "Akexorcist",
+ "icon" : "ic_launcher"
+ }
  }
  *
  *
  * (Many Devices)
  *
  * {
-     "registration_ids" : ["DEVICE_1", "DEVICE_2", "DEVICE_3"],
-     "notification" : {
-         "body" : "Hello Android User",
-         "title" : "Akexorcist",
-         "icon" : "ic_launcher"
-     }
+ "registration_ids" : ["DEVICE_1", "DEVICE_2", "DEVICE_3"],
+ "notification" : {
+ "body" : "Hello Android User",
+ "title" : "Akexorcist",
+ "icon" : "ic_launcher"
+ }
  }
  *
  */
@@ -68,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private boolean isReceiverRegistered;
+
+    Button btnShowNoti;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +90,19 @@ public class MainActivity extends AppCompatActivity {
                     "This device hasn't Google Play Services",
                     Toast.LENGTH_SHORT).show();
         }
+
+        setupButton();
+    }
+
+    private void setupButton() {
+        btnShowNoti = (Button) findViewById(R.id.btn_show_noti);
+        btnShowNoti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyNotification createNotification = new MyNotification(MainActivity.this);
+                createNotification.callLocalNotification();
+            }
+        });
     }
 
     @Override
@@ -134,6 +154,4 @@ public class MainActivity extends AppCompatActivity {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         isReceiverRegistered = false;
     }
-
-
 }
