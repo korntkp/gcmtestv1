@@ -1,14 +1,14 @@
 package com.example.vasic171.gcmtestv1.views;
 
-import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
 /**
  * Created by tanakp49 on 25/07/2559.
  */
-public class MyDialog extends Activity {
+public class MyDialog {
     private static final String TAG = "Creating Dialog";
     private static final String DATA_TITLE = "title";
     private static final String DATA_BODY = "body";
@@ -30,6 +30,10 @@ public class MyDialog extends Activity {
         Log.e(TAG, "Title : " + dialogTitle);
         Log.e(TAG, "Body : " + dialogBody);
         Log.e(TAG, "Icon : " + dialogIcon);
+
+        new ShowDialog().execute(dialogBody);
+
+//        Toast.makeText(context, dialogBody, Toast.LENGTH_SHORT).show();
 
 ////        setTheme(android.R.style.Theme_Dialog);
 ////        http://stackoverflow.com/questions/2147144/android-how-to-display-a-dialog-over-a-native-screen
@@ -66,5 +70,18 @@ public class MyDialog extends Activity {
 //                builder.show();
 //            }
 //        });
+    }
+
+    private class ShowDialog extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            int count = strings.length;
+            for (int i = 0; i < count; i++){
+                Log.d("sdf!!!!!!!!!!!!!!!!!!", strings[i]);
+//                Toast.makeText(context.getApplicationContext(), strings[i], Toast.LENGTH_SHORT).show();
+            }
+            return null;
+        }
     }
 }

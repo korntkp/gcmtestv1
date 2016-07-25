@@ -9,6 +9,9 @@ import com.google.android.gms.gcm.GcmListenerService;
 
 public class GcmDownstreamService extends GcmListenerService {
     private static final String TAG = "DcmDownStreamService";
+    private static final String DATA_TITLE = "title";
+    private static final String DATA_BODY = "body";
+    private static final String DATA_ICON = "icon";
 
     @Override
     public void onMessageReceived(String s, Bundle bundle) {
@@ -26,8 +29,16 @@ public class GcmDownstreamService extends GcmListenerService {
 //                    value.getClass().getName()));
 //        }
         if (notificationBundle != null) {
+            String notificationTitle =  notificationBundle.getString(DATA_TITLE);
+            String notificationBody =  notificationBundle.getString(DATA_BODY);
+            String notificationIcon =  notificationBundle.getString(DATA_ICON);
+
+            Log.e(TAG, "Title : " + notificationTitle);
+            Log.e(TAG, "Body : " + notificationBody);
+            Log.e(TAG, "Icon : " + notificationIcon);
+
             MyNotification myNotification = new MyNotification(GcmDownstreamService.this);
-            myNotification.createPushNotification(notificationBundle);
+            myNotification.createPushNotification(notificationTitle, notificationBody, notificationIcon);
         } else if (body != null) {
             Log.e(TAG, "Do CreateDialog");
             MyDialog myDialog = new MyDialog(GcmDownstreamService.this);
